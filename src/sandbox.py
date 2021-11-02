@@ -6,8 +6,7 @@ from automatas.NDFA.NDFA_node import NDFA_node
 # NDFA 1: a.b
 q0 = NDFA_node('q0')
 q1 = NDFA_node('q1')
-q2 = NDFA_node('q2')
-q2.final = True
+q2 = NDFA_node('q2', True)
 
 edg1 = NDFA_edge('a')
 edg1.target = q1

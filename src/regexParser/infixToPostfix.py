@@ -1,13 +1,14 @@
-#Basado en https://gist.github.com/DmitrySoshnikov/1239804
-#Por Dmitry Soshnikov
+# Basado en https://gist.github.com/DmitrySoshnikov/1239804
+# Por Dmitry Soshnikov
 
-#Entrada: Lista de elementos no vacía
-#Salida: Valor del último elemento de la lista
+# Entrada: Lista de elementos no vacía
+# Salida: Valor del último elemento de la lista
 def peek(list):
     return list[len(list)-1]
 
+
 #Entrada: Caracter
-#Salida: Entero que representa precedencia del caracater en una expresión regular (menor número, mayor presedencia)
+# Salida: Entero que representa precedencia del caracater en una expresión regular (menor número, mayor presedencia)
 def precedenceOf(char):
     if char == '(':
         return 1
@@ -20,8 +21,9 @@ def precedenceOf(char):
     else:
         return 5
 
-#Entrada: String de expresión regular infix
-#Salida: String de expresión regular postfix
+
+# Entrada: String de expresión regular infix
+# Salida: String de expresión regular postfix
 def infixToPostfix(regexString):
     output = []
     stack = []
@@ -49,7 +51,7 @@ def infixToPostfix(regexString):
                 else:
                     break
             stack.append(currentChar)
-            
+
     while len(stack):
         output.append(stack.pop())
 

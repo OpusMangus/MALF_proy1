@@ -25,8 +25,7 @@ k3 = NDFA_node('q3')
 k4 = NDFA_node('q4')
 k5 = NDFA_node('q5')
 k6 = NDFA_node('q6')
-k7 = NDFA_node('q7')
-k7.final = True
+k7 = NDFA_node('q7', True)
 
 # q0
 ed1 = NDFA_edge('_')

@@ -35,5 +35,7 @@ def constructTree(postfix):
                 t.left = nodeLeft
             stack.append(t)
 
-    root = stack.pop()
+    root = None
+    if(len(stack) >= 1):
+        root = stack.pop()
     return root

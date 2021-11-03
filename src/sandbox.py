@@ -1,7 +1,7 @@
 from automatas.NDFA.automata import automata
 from automatas.NDFA.NDFA_edge import NDFA_edge
 from automatas.NDFA.NDFA_node import NDFA_node
-
+from regexParser.parser import get_sigma
 
 # NDFA 1: a.b
 q0 = NDFA_node('q0')
@@ -82,7 +82,10 @@ ed10.target = k7
 k6.edges.append(ed10)
 
 # Tests
-nodes = [k3, k4, k6, k3, k3, k1, k4]
+aut1 = automata(k0, get_sigma('a|b*'))
+nodes = [k1, k4, k6]
 
-for node in set(nodes):
-    print(node.value)
+result = aut1.move(nodes, 'b')
+
+for x in result:
+    print(x.value)

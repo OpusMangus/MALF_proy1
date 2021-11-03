@@ -6,7 +6,7 @@ class automata:
     def get_transition_table(self):
         return
 
-    def move(origin_states, char):
+    def move(self, origin_states, char):
         target_states = []
         for state in origin_states:
             for edge in state.edges:

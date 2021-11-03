@@ -83,7 +83,7 @@ k6.edges.append(ed10)
 
 # Tests
 aut1 = automata(k0, get_sigma('a|b*'))
-nodes = [k1, k4, k6]
+nodes = [k1, k4, k6, k7]
 
 result = aut1.move(nodes, 'b')
 

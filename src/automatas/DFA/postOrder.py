@@ -9,6 +9,7 @@ def PostorderTraversal(root):
         res.append(root.data)
     return res
 
+#Example
 root = Node(27)
 root.insert(14)
 root.insert(35)

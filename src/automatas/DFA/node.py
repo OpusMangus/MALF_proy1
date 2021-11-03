@@ -6,7 +6,6 @@ class Node:
         self.data = data
 
     def insert(self, data):
-
         if self.data:
             if data < self.data:
                 if self.left is None:

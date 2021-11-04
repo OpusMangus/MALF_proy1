@@ -3,6 +3,9 @@ from .operators import klean
 from .operators import conc
 from .operators import posit
 from .infixToPostfixDFA import infixToPostFix
+from automatas.NDFA.NDFA_edge import NDFA_edge
+from automatas.NDFA.NDFA_node import NDFA_node
+
 
 def thompson(cadena):
     cont=0
@@ -36,6 +39,21 @@ def thompson(cadena):
     return lista_Trans, pila_I, pila_F
 
 
+def createGraph(pila_I, pila_F, lista_Trans):
+    qList = []
+    #create nodes
+    for i in range(pila_F[len(pila_F)-1]):
+       q = NDFA_node(''.join(i))
+       qList.append(q)
+    #add edges for graph
+    for i in range(len(lista_Trans)):
+        edge = lista_Trans[i]
+        qList[int(edge[0])] = NDFA_edge(edge[1], edge[len(edge)-1])
+        qList[int(edge[0])].target = edge[len(edge)-1]
+
+    return qList 
+
+
 def startThompson(expresion):
     #1.- convert infix to postfix
     lpos,alfabeto,pila = infixToPostFix(expresion)
@@ -62,3 +80,7 @@ def startThompson(expresion):
     #end node
     print("Fin\n")
     print(pila_F,)
+
+    #4.- Create graph
+    qList = createGraph(pila_I,pila_F, lista_Trans)
+

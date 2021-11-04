@@ -91,11 +91,8 @@ aut1 = automata(k0, klist, get_sigma('(a|b*)'))
 tt = transition_table(aut1)
 aut2 = tt.get_DFA()
 
-print('Sin rizo:')
-aut1.show()
-print()
-aut2.show()
-print()
+aut1.show('AFND')
+aut2.show('AFD')
 
 aut1.add_rizos()
 tt = transition_table(aut1)

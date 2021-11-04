@@ -1,5 +1,5 @@
 from regexParser.parser import parse
-
+from automatas.DFA.thompson import startThompson
 
 def inorder(t):
     if t is not None:
@@ -8,7 +8,7 @@ def inorder(t):
         inorder(t.right)
 
 
-regex = '(a.b)*'
-
+regex = '((a.b)|c)*'
+startThompson(regex)
 t = parse(regex)
 inorder(t)

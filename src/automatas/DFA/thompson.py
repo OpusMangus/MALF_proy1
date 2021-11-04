@@ -6,7 +6,6 @@ from .infixToPostfixDFA import infixToPostFix
 from automatas.NDFA.NDFA_edge import NDFA_edge
 from automatas.NDFA.NDFA_node import NDFA_node
 from automatas.automata import automata
-from automatas.DFA.transition_table import transition_table
 from regexParser.parser import get_sigma
 
 def thompson(cadena):
@@ -44,21 +43,25 @@ def thompson(cadena):
 def createGraph(pila_I, pila_F, lista_Trans):
     qList = []
     #create nodes
-    for i in range(pila_F[len(pila_F)-1]):
-       q = NDFA_node(''.join(i))
+    for i in range(pila_F[len(pila_F)-1]+1):
+       q = NDFA_node('q'+str(i))
        qList.append(q)
     #add edges for graph
+    print(len(qList))
     for i in range(len(lista_Trans)):
         edge = lista_Trans[i]
-        qList[int(edge[0])] = NDFA_edge(edge[1], edge[len(edge)-1])
-        qList[int(edge[0])].target = edge[len(edge)-1]
-
+        nfda_edge = NDFA_edge(edge[1], qList[int(edge[2])])
+        qList[int(edge[0])].edges.append(nfda_edge)
+    
+    qList[pila_F[2]].final = True 
     return qList 
 
 
 def startThompson(expresion):
     #1.- convert infix to postfix
     lpos,alfabeto,pila = infixToPostFix(expresion)
+    print(lpos)
+
     print("Notacion posfija \n")
     print(lpos)
     #2.- see alphabet
@@ -85,5 +88,7 @@ def startThompson(expresion):
 
     #4.- Create graph
     qList = createGraph(pila_I,pila_F, lista_Trans)
-    aut1 = automata(qList[0], qList, get_sigma(expresion))
+    print(qList)
+    aut1 = automata(qList[0], qList, set(alfabeto))
+    aut1.show('AFND')
 

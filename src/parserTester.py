@@ -8,7 +8,7 @@ def inorder(t):
         inorder(t.right)
 
 
-regex = '((a.b)|c)*'
+regex = '(a.b)'
 startThompson(regex)
 t = parse(regex)
 inorder(t)

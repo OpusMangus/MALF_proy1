@@ -7,10 +7,10 @@ def union(elem1, elem2, lista_Trans, pila_I, pila_F):
     f2 = pila_F.pop()
     inicio = ini
     f = fin
-    lista_Trans.append([str(inicio), '@', str(in1)])
-    lista_Trans.append([str(inicio), '@', str(in2)])
-    lista_Trans.append([str(f1), '@', str(f)])
-    lista_Trans.append([str(f2), '@', str(f)])
+    lista_Trans.append([str(inicio), '_', str(in1)])
+    lista_Trans.append([str(inicio), '_', str(in2)])
+    lista_Trans.append([str(f1), '_', str(f)])
+    lista_Trans.append([str(f2), '_', str(f)])
     pila_I.append(inicio)
     pila_F.append(f)
     
@@ -23,10 +23,10 @@ def klean(elem1, elem2, lista_Trans, pila_I, pila_F):
     ini1 = pila_I.pop()
     fin1 = pila_F.pop()
 
-    lista_Trans.append([str(ini), '@', str(fin)])
-    lista_Trans.append([str(ini), '@', str(ini1)])
-    lista_Trans.append([str(fin1), '@', str(ini1)])
-    lista_Trans.append([str(fin1), '@', str(fin)])
+    lista_Trans.append([str(ini), '_', str(fin)])
+    lista_Trans.append([str(ini), '_', str(ini1)])
+    lista_Trans.append([str(fin1), '_', str(ini1)])
+    lista_Trans.append([str(fin1), '_', str(fin)])
 
     pila_I.append(ini)
     pila_F.append(fin)
@@ -39,9 +39,9 @@ def posit(elem1, elem2, lista_Trans, pila_I, pila_F):
     ini1 = pila_I.pop()
     fin1 = pila_F.pop()
 
-    lista_Trans.append([str(ini), '@', str(ini1)])
-    lista_Trans.append([str(fin1), '@', str(ini1)])
-    lista_Trans.append([str(fin1), '@', str(fin)])
+    lista_Trans.append([str(ini), '_', str(ini1)])
+    lista_Trans.append([str(fin1), '_', str(ini1)])
+    lista_Trans.append([str(fin1), '_', str(fin)])
 
     pila_I.append(ini)
     pila_F.append(fin)

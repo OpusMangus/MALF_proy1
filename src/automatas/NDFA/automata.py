@@ -34,3 +34,10 @@ class automata:
                         reachable.append(edge.target)
                         closure.add(edge.target)
         return closure
+    
+    def e_closure_set(self, node_set):
+        closure_set = set()
+        for node in node_set:
+            temp_closure = self.e_closure(node)
+            closure_set.update(temp_closure)
+        return closure_set

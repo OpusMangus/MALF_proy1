@@ -5,7 +5,9 @@ from .operators import posit
 from .infixToPostfixDFA import infixToPostFix
 from automatas.NDFA.NDFA_edge import NDFA_edge
 from automatas.NDFA.NDFA_node import NDFA_node
-
+from automatas.automata import automata
+from automatas.DFA.transition_table import transition_table
+from regexParser.parser import get_sigma
 
 def thompson(cadena):
     cont=0
@@ -83,4 +85,5 @@ def startThompson(expresion):
 
     #4.- Create graph
     qList = createGraph(pila_I,pila_F, lista_Trans)
+    aut1 = automata(qList[0], qList, get_sigma(expresion))
 

@@ -30,3 +30,6 @@ class automata:
         for node in self.final_states:
             print(node.value, end=', ')
         print()
+
+    def add_rizos(self):
+        self.start_node.add_rizos(self.alphabet)

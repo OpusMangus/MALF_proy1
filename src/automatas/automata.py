@@ -12,21 +12,31 @@ class automata:
                 temp.append(node)
         return temp
 
-    def show(self):
-        print('K = ', end='')
-        for node in self.node_list:
-            print(node.value, end=', ')
-        print()
-        print('Sigma = ', end='')
-        for char in self.alphabet:
-            print(char, end=', ')
-        print()
+    def format_list(self, coll):
+        formatted = '{'
+        for item in coll:
+            formatted = formatted + item + ','
+        formatted = formatted[:-1]
+        formatted = formatted + '}'
+        return formatted
+
+    def show(self, tittle):
+        print(tittle + ':')
+        print('K=', end='')
+        nodes = [node.value for node in self.node_list]
+        print(self.format_list(nodes))
+        print('Sigma=', end='')
+        print(self.format_list(self.alphabet))
         print('Delta:')
         for node in self.node_list:
             for edge in node.edges:
-                print(node.value + ', ' + edge.in_char + ', ' + edge.target.value)
+                print('(' + node.value + ',' + edge.in_char + ',' + edge.target.value + ')')
         print('s=' + self.start_node.value)
-        print('F = ', end='')
-        for node in self.final_states:
-            print(node.value, end=', ')
+        print('F=', end='')
+        states = [state.value for state in self.final_states]
+        print(self.format_list(states))
         print()
+    
+    
+    def add_rizos(self):
+        self.start_node.add_rizos(self.alphabet)

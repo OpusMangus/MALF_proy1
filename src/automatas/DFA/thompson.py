@@ -65,6 +65,7 @@ def thompson(cadena):
     cont = 0
     cont2 = 1
     for c in cadena:
+        #Para letra (Mayuscula o minuscula) y numero
         if((ord(c) >= 97 and ord(c) <= 122) or (ord(c) >= 65 and ord(c) <= 90) or (ord(c) >= 48 and ord(c) <= 57)):
             lista_Trans.append([str(cont), c, str(cont2)])
             pila_I.append(cont)
@@ -100,11 +101,12 @@ for i in expresion:
         lpos.append(i)
         #save letter
         alfabeto.append(i)
-
+    #si es klean(*), union(|), posit(+) o conc(-)
     else:
         if pila == [] or pila[len(pila)-1] == "(" or i == "(":
             pila.append(i)
         elif i == "+" or i == "*":
+            #si ya estan en la pila..
             if pila[len(pila)-1] == "+" or pila[len(pila)-1] == "*":
                 lpos.append(i)
             else:
@@ -146,6 +148,7 @@ print("\n")
 lista_Trans = []
 pila_I = ['n']
 pila_F = ['n']
+
 thompson(lpos)
 print("lista thompson\n\n")
 print(lista_Trans)

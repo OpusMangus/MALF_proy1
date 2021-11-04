@@ -1,7 +1,8 @@
-from automatas.NDFA.automata import automata
+from automatas.automata import automata
 from automatas.NDFA.NDFA_edge import NDFA_edge
 from automatas.NDFA.NDFA_node import NDFA_node
 from regexParser.parser import get_sigma
+from automatas.DFA.transition_table import transition_table
 
 # NDFA 1: a.b
 q0 = NDFA_node('q0')
@@ -16,6 +17,8 @@ edg2.target = q2
 
 q0.edges.append(edg1)
 q1.edges.append(edg2)
+
+qlist = [q0, q1]
 
 # NDFA 2: a|b*
 k0 = NDFA_node('q0')
@@ -81,11 +84,14 @@ ed10.target = k7
 
 k6.edges.append(ed10)
 
+klist = [k0,k1,k2,k3,k4,k5,k6,k7]
+
 # Tests
-aut1 = automata(k0, get_sigma('a|b*'))
-nodes = [k1, k4, k6, k7]
+aut1 = automata(k0, klist, get_sigma('a|b*'))
+tt = transition_table(aut1)
+aut2 = tt.get_DFA()
 
-result = aut1.move(nodes, 'b')
+aut1.show()
+print()
+aut2.show()
 
-for x in result:
-    print(x.value)

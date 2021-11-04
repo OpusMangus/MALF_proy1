@@ -13,28 +13,31 @@ class transition_table:
         #Crear q0 del DFA
         start_NFA_states = self.e_closure(self.start_node)
         start_NFA_states.add(self.start_node)
-
         q0 = DFA_node('q0', start_NFA_states, self.is_final_node(start_NFA_states, self.final_states))
+
+        #Agregar 
         DFA_list = [q0]
         DFA_stack = [q0]
         
         qCounter = 1
         while(len(DFA_stack) > 0):
-            node = DFA_stack.pop()
+            node = DFA_stack.pop(0)
             for char in self.alphabet:
                 moved_set = self.move(node.NDFA_states, char)
                 closure_set = self.e_closure_set(moved_set)
                 new_NDFA_state = moved_set.union(closure_set)
 
-                DFA_state = self.get_DFA_state(DFA_list, new_NDFA_state)
-                if(DFA_state == None):
-                    DFA_state = DFA_node('q' + str(qCounter), new_NDFA_state, self.is_final_node(new_NDFA_state, self.final_states))
-                    DFA_list.append(DFA_state)
-                    DFA_stack.append(DFA_state)
-                    qCounter += 1
-                
-                edge = DFA_edge(char, DFA_state)
-                node.edges.append(edge)
+                if(len(new_NDFA_state) > 0):
+                    DFA_state = self.get_DFA_state(DFA_list, new_NDFA_state)
+                    if(DFA_state == None):
+                        DFA_state = DFA_node('q' + str(qCounter), new_NDFA_state, self.is_final_node(new_NDFA_state, self.final_states))
+
+                        DFA_list.append(DFA_state)
+                        DFA_stack.append(DFA_state)
+                        qCounter += 1
+                    
+                    edge = DFA_edge(char, DFA_state)
+                    node.edges.append(edge)
         
         automataDFA = automata(q0, DFA_list, self.alphabet)
         return automataDFA

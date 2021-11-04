@@ -18,6 +18,8 @@ edg2.target = q2
 q0.edges.append(edg1)
 q1.edges.append(edg2)
 
+qlist = [q0, q1]
+
 # NDFA 2: a|b*
 k0 = NDFA_node('q0')
 k1 = NDFA_node('q1')

@@ -62,7 +62,7 @@ def conc(lista_Trans, pila_I, pila_F):
     ini2 = pila_I.pop()
     fin1 = pila_F.pop()
     fin2 = pila_F.pop()
-    lista_Trans = sust(fin2, ini1, lista_Trans)
+    lista_Trans.append([str(fin2), '_', str(ini1)])
     pila_I.append(ini2)
     pila_F.append(fin1)
     return lista_Trans, pila_I, pila_F

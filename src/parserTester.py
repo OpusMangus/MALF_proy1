@@ -1,5 +1,6 @@
-from regexParser.parser import parse
+from regexParser.infixToPostfix import infixToPostfix
 from automatas.DFA.thompson import startThompson
+from automatas.DFA.transition_table import transition_table
 
 def inorder(t):
     if t is not None:
@@ -8,7 +9,13 @@ def inorder(t):
         inorder(t.right)
 
 
-regex = '(a.b)'
-startThompson(regex)
-t = parse(regex)
-inorder(t)
+regex = '(a.b)*'
+pf = infixToPostfix(regex)
+#print(list(pf))
+aut1 = startThompson(regex)
+
+#aut1.add_rizos()
+aut1.show('NDFA:')
+tt = transition_table(aut1)
+aut2 = tt.get_DFA()
+aut2.show('DFA:')

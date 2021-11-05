@@ -21,14 +21,14 @@ def sub_string_max_match(DFA, substring):
     max_final_pos = -1
 
     char_count = 0
-    for char in char_stack: #Se consume un caracter
+    for char in char_stack: 
         if(len(node_stack) > 0): #Se llega a un nodo nuevo (puede ser el inicial)
             current_node = node_stack.pop()
             
             if current_node.final: #Si es un nodo final, se reemplaza la actual posición máxima de match
                 max_final_pos = char_count
             for edge in current_node.edges: #Se busca si se puede llegar a otro nodo con el caracter consumido
-                if edge.in_char == char:
+                if edge.in_char == char: #Se consume un caracter
                     node_stack.append(edge.target)
                     char_count += 1
                     break

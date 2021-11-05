@@ -34,7 +34,7 @@ def thompson(cadena):
             lista_Trans, pila_I, pila_F = posit(cont, cont2,lista_Trans, pila_I, pila_F)
             cont=cont+2
             cont2=cont2+2
-        elif(c=='-'):
+        elif(c=='.'):
             lista_Trans, pila_I, pila_F = conc(lista_Trans, pila_I, pila_F)
     
     return lista_Trans, pila_I, pila_F
@@ -47,20 +47,18 @@ def createGraph(pila_I, pila_F, lista_Trans):
        q = NDFA_node('q'+str(i))
        qList.append(q)
     #add edges for graph
-    print(len(qList))
     for i in range(len(lista_Trans)):
         edge = lista_Trans[i]
         nfda_edge = NDFA_edge(edge[1], qList[int(edge[2])])
         qList[int(edge[0])].edges.append(nfda_edge)
     
-    qList[pila_F[2]].final = True 
+    qList[pila_F[1]].final = True 
     return qList 
 
 
 def startThompson(expresion):
     #1.- convert infix to postfix
     lpos,alfabeto,pila = infixToPostFix(expresion)
-    print(lpos)
 
     print("Notacion posfija \n")
     print(lpos)
@@ -88,7 +86,6 @@ def startThompson(expresion):
 
     #4.- Create graph
     qList = createGraph(pila_I,pila_F, lista_Trans)
-    print(qList)
     aut1 = automata(qList[0], qList, set(alfabeto))
     aut1.show('AFND')
 

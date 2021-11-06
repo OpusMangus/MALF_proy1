@@ -3,6 +3,7 @@ from automatas.NDFA.NDFA_edge import NDFA_edge
 from automatas.NDFA.NDFA_node import NDFA_node
 from regexParser.parser import get_sigma
 from automatas.DFA.transition_table import transition_table
+from automatas.DFA.find_occurrences import find_ocurrences
 
 # NDFA 1: a.b
 q0 = NDFA_node('q0')
@@ -18,7 +19,7 @@ edg2.target = q2
 q0.edges.append(edg1)
 q1.edges.append(edg2)
 
-qlist = [q0, q1]
+qlist = [q0, q1, q2]
 
 # NDFA 2: a|b*
 k0 = NDFA_node('q0')
@@ -87,10 +88,19 @@ k6.edges.append(ed10)
 klist = [k0,k1,k2,k3,k4,k5,k6,k7]
 
 # Tests
-aut1 = automata(k0, klist, get_sigma('a|b*'))
+aut1 = automata(q0, qlist, get_sigma('a.b'))
 tt = transition_table(aut1)
 aut2 = tt.get_DFA()
 
 aut1.show('AFND')
 aut2.show('AFD')
 
+#aut1.add_rizos()
+#tt = transition_table(aut1)
+#aut3 = tt.get_DFA()
+#print('Con rizo:')
+#aut1.show()
+#print()
+#aut3.show()
+matches = find_ocurrences(aut2, 'abaabababbbbbab')
+print(matches)

@@ -19,9 +19,9 @@ def sub_string_max_match(DFA, substring):
 
     node_stack.append(start_node)
     max_final_pos = -1
-
-    char_count = 0
-    for char in char_stack: 
+    
+    char_count = -1
+    for char in char_stack:
         if(len(node_stack) > 0): #Se llega a un nodo nuevo (puede ser el inicial)
             current_node = node_stack.pop()
             
@@ -33,8 +33,10 @@ def sub_string_max_match(DFA, substring):
                     char_count += 1
                     break
         else: #Se llega a un estado sin salida
-            print(substring + ' ' + str(max_final_pos))
             return max_final_pos
-        
-    print(substring + ' ' + str(max_final_pos))
+
+    current_node = node_stack.pop()  #Nodo luego de consumir todos los caracteres  
+    if current_node.final: #Si es un nodo final, se reemplaza la actual posición máxima de match
+        max_final_pos = char_count
+
     return max_final_pos

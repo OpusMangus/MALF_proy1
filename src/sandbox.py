@@ -102,5 +102,11 @@ aut2.show('AFD')
 #aut1.show()
 #print()
 #aut3.show()
+
+def print_matches(matches):
+    print('Ocurrencias:')
+    for match in matches:
+        print(' '.join(map(str, match)))
+
 matches = find_ocurrences(aut2, 'abaabababbbbbab')
-print(matches)
+print_matches(matches)

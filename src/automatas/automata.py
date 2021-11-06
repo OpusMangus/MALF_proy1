@@ -13,11 +13,11 @@ class automata:
         return temp
 
     def format_list(self, coll):
-        formatted = '{'
+        formatted = ''
         for item in coll:
             formatted = formatted + item + ','
         formatted = formatted[:-1]
-        formatted = formatted + '}'
+        formatted = '{' + formatted + '}'
         return formatted
 
     def show(self, tittle):

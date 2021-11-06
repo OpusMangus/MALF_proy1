@@ -35,8 +35,9 @@ def sub_string_max_match(DFA, substring):
         else: #Se llega a un estado sin salida
             return max_final_pos
 
-    current_node = node_stack.pop()  #Nodo luego de consumir todos los caracteres  
-    if current_node.final: #Si es un nodo final, se reemplaza la actual posición máxima de match
-        max_final_pos = char_count
+    if(len(node_stack) > 0):
+        current_node = node_stack.pop()  #Nodo luego de consumir todos los caracteres  
+        if current_node.final: #Si es un nodo final, se reemplaza la actual posición máxima de match
+            max_final_pos = char_count
 
     return max_final_pos

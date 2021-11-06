@@ -1,4 +1,4 @@
-from automatas.DFA.thompson import startThompson
+from automatas.NDFA.thompson import startThompson
 from automatas.DFA.transition_table import transition_table
 from automatas.DFA.find_occurrences import find_ocurrences
 from automatas.NDFA.NDFA_node import NDFA_node

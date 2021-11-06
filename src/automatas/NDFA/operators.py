@@ -33,30 +33,6 @@ def klean(elem1, elem2, lista_Trans, pila_I, pila_F):
 
     return lista_Trans, pila_I, pila_F
 
-def posit(elem1, elem2, lista_Trans, pila_I, pila_F):
-    ini = elem1
-    fin = elem2
-    ini1 = pila_I.pop()
-    fin1 = pila_F.pop()
-
-    lista_Trans.append([str(ini), '_', str(ini1)])
-    lista_Trans.append([str(fin1), '_', str(ini1)])
-    lista_Trans.append([str(fin1), '_', str(fin)])
-
-    pila_I.append(ini)
-    pila_F.append(fin)
-
-    return lista_Trans, pila_I, pila_F
-
-def sust(elem1, elem2, lista_Trans):
-    for i in lista_Trans:
-        print("i: "+str(i))
-        print("elem2: "+str(elem2))
-        print("elem1: ")
-        if i[0] == str(elem2):
-            i[0] = str(elem1)
-    return lista_Trans
-    
 def conc(lista_Trans, pila_I, pila_F):
     ini1 = pila_I.pop()
     ini2 = pila_I.pop()
@@ -66,18 +42,3 @@ def conc(lista_Trans, pila_I, pila_F):
     pila_I.append(ini2)
     pila_F.append(fin1)
     return lista_Trans, pila_I, pila_F
-
-def conc2(lista_Trans, pila_I, pila_F):
-    print("pilaInicio"+str(pila_I))
-    print("pilaFin"+str(pila_F))
-    print("---------------------------")
-    ini = pila_I.pop()
-    fin = pila_I.pop()
-    ini1 = pila_F.pop()
-    fin1 = pila_F.pop()
-    lista_Trans.append([str(ini), '_', str(ini1)])
-    lista_Trans.append([str(fin1), '_', str(ini1)])
-    lista_Trans.append([str(fin1), '_', str(fin)])
-
-    pila_I.append(ini)
-    pila_F.append(fin)
